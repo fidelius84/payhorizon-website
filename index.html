@@ -1,817 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payhorizon — Independent Merchant Services</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-:root {
-  --black:   #0A0A0A;
-  --black2:  #111111;
-  --black3:  #1A1A1A;
-  --black4:  #222222;
-  --white:   #FFFFFF;
-  --off:     #F5F5F5;
-  --mid:     #E8E8E8;
-  --border:  #2A2A2A;
-  --border-lt: #E2E2E2;
-  --text:    #1A1A1A;
-  --muted:   #666666;
-  --muted-dk:#888888;
-  --accent:  #2563EB;
-  --accent2: #3B82F6;
-  --accentlt:#DBEAFE;
-  --green:   #059669;
-  --gold:    #D97706;
-
-  --font-head: "Syne", sans-serif;
-  --font-body: "DM Sans", sans-serif;
-  --r: 8px;
-  --r-lg: 16px;
-  --shadow: 0 2px 16px rgba(0,0,0,0.06);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
-  --t: 0.22s cubic-bezier(0.4,0,0.2,1);
-}
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--font-body);color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;}
-a{color:inherit;text-decoration:none;}
-button{cursor:pointer;border:none;font-family:var(--font-body);}
-ul{list-style:none;}
-
-.container{max-width:1140px;margin:0 auto;padding:0 28px;}
-.section{padding:96px 0;}
-.section--alt{background:var(--off);}
-.section--dark{background:var(--black);color:var(--white);}
-
-/* TYPOGRAPHY */
-h1,h2,h3,h4{font-family:var(--font-head);}
-.eyebrow{font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
-.eyebrow--white{color:rgba(255,255,255,0.5);}
-.section-title{font-size:clamp(26px,3.8vw,42px);font-weight:800;line-height:1.12;color:var(--black);margin-bottom:16px;letter-spacing:-0.02em;}
-.section-title--white{color:var(--white);}
-.section-sub{font-size:17px;line-height:1.7;color:var(--muted);max-width:580px;font-weight:300;}
-.section-sub--white{color:rgba(255,255,255,0.6);}
-.text-center{text-align:center;}
-.text-center .section-sub{margin:0 auto;}
-
-/* GRID */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:var(--r);font-family:var(--font-head);font-size:13px;font-weight:700;letter-spacing:0.04em;transition:var(--t);white-space:nowrap;}
-.btn svg{width:14px;height:14px;flex-shrink:0;}
-.btn-primary{background:var(--black);color:var(--white);}
-.btn-primary:hover{background:var(--black3);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.25);}
-.btn-accent{background:var(--accent);color:var(--white);}
-.btn-accent:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,99,235,0.3);}
-.btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--black);}
-.btn-outline:hover{background:var(--black);color:var(--white);}
-.btn-outline-white{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.35);}
-.btn-outline-white:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);}
-.btn-white{background:var(--white);color:var(--black);}
-.btn-white:hover{background:var(--off);transform:translateY(-1px);}
-.btn-lg{padding:16px 32px;font-size:14px;border-radius:10px;}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:var(--t);}
-.nav--scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);}
-.nav__inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
-.nav__logo{display:flex;align-items:center;gap:10px;}
-.nav__logo-mark{width:34px;height:34px;border-radius:6px;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;}
-.nav__logo-mark img{width:28px;height:28px;object-fit:contain;}
-.nav__logo-text{font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--white);letter-spacing:-0.02em;}
-.nav__links{display:flex;align-items:center;gap:2px;}
-.nav__link{font-family:var(--font-head);font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);padding:7px 13px;border-radius:6px;transition:var(--t);letter-spacing:0.03em;}
-.nav__link:hover,.nav__link.active{color:var(--white);background:rgba(255,255,255,0.07);}
-.nav__cta{margin-left:12px;}
-.nav__hamburger{display:none;flex-direction:column;gap:5px;background:none;padding:8px;}
-.nav__hamburger span{display:block;width:20px;height:1.5px;background:white;border-radius:2px;transition:var(--t);}
-
-/* HERO */
-.hero{min-height:100vh;background:var(--black);display:flex;align-items:center;padding-top:68px;position:relative;overflow:hidden;}
-.hero__noise{position:absolute;inset:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px;}
-.hero__line{position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.04) 30%,rgba(255,255,255,0.04) 70%,transparent);}
-.hero__content{position:relative;z-index:1;padding:80px 0 100px;}
-.hero__layout{display:grid;grid-template-columns:1.15fr 0.85fr;gap:64px;align-items:center;}
-.hero__kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:5px 14px;margin-bottom:28px;}
-.hero__kicker-dot{width:5px;height:5px;border-radius:50%;background:#fff;animation:blink 2.4s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.hero__kicker-text{font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:0.12em;text-transform:uppercase;}
-.hero__title{font-size:clamp(42px,6vw,80px);font-weight:800;color:var(--white);line-height:1.0;letter-spacing:-0.04em;margin-bottom:24px;}
-.hero__title em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.6);}
-.hero__sub{font-size:17px;line-height:1.75;color:rgba(255,255,255,0.5);max-width:520px;margin-bottom:40px;font-weight:300;}
-.hero__actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.hero__proof{display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.07);}
-.hero__proof-item{display:flex;flex-direction:column;gap:3px;}
-.hero__proof-num{font-family:var(--font-head);font-size:26px;font-weight:800;color:var(--white);line-height:1;}
-.hero__proof-label{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.05em;}
-.hero__proof-div{width:1px;height:36px;background:rgba(255,255,255,0.08);}
-
-/* COMPARISON CARD */
-.compare-card{background:var(--black2);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-lg);overflow:hidden;}
-.compare-card__head{padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px;}
-.compare-card__head-title{font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase;}
-.compare-card__dot{width:8px;height:8px;border-radius:50%;}
-.compare-card__row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 24px;border-bottom:1px solid rgba(255,255,255,0.05);}
-.compare-card__row:last-child{border-bottom:none;}
-.compare-card__label{font-size:12px;color:rgba(255,255,255,0.4);}
-.compare-card__val{font-family:var(--font-head);font-size:14px;font-weight:700;color:rgba(255,255,255,0.7);}
-.compare-card__val--good{color:#34D399;}
-.compare-card__val--save{color:#FBBF24;font-size:18px;}
-.compare-card__divider{height:1px;background:rgba(255,255,255,0.07);margin:0;}
-.compare-card__footer{padding:12px 24px;font-size:10px;color:rgba(255,255,255,0.2);line-height:1.6;}
-
-/* TRUST BAR */
-.trustbar{background:var(--black2);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);padding:20px 0;}
-.trustbar__inner{display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;}
-.trustbar__item{display:flex;align-items:center;gap:8px;}
-.trustbar__icon{color:rgba(255,255,255,0.25);flex-shrink:0;}
-.trustbar__text{font-family:var(--font-head);font-size:11px;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:0.07em;text-transform:uppercase;white-space:nowrap;}
-
-/* CARDS */
-.card{background:var(--white);border:1px solid var(--border-lt);border-radius:var(--r-lg);padding:28px;transition:var(--t);}
-.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
-.card__icon{width:44px;height:44px;border-radius:var(--r);background:var(--off);display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--black);}
-.card__icon svg{width:22px;height:22px;}
-.card__tag{font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;}
-.card__title{font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--black);margin-bottom:10px;line-height:1.3;}
-.card__body{font-size:13px;line-height:1.75;color:var(--muted);}
-.card__list{margin-top:16px;display:flex;flex-direction:column;gap:7px;}
-.card__list li{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);line-height:1.5;}
-.card__list li::before{content:"";display:block;width:4px;height:4px;border-radius:50%;background:var(--black);flex-shrink:0;margin-top:6px;}
-.card--dark{background:var(--black2);border-color:rgba(255,255,255,0.07);}
-.card--dark .card__title{color:var(--white);}
-.card--dark .card__body{color:rgba(255,255,255,0.5);}
-.card--dark .card__list li{color:rgba(255,255,255,0.5);}
-.card--dark .card__list li::before{background:rgba(255,255,255,0.3);}
-.card--dark .card__icon{background:rgba(255,255,255,0.06);color:var(--white);}
-.card--inv{background:var(--black);border-color:rgba(255,255,255,0.1);color:var(--white);}
-.card--inv .card__title{color:var(--white);}
-.card--inv .card__body{color:rgba(255,255,255,0.55);}
-.card--inv .card__icon{background:rgba(255,255,255,0.07);color:var(--white);}
-.card--inv .card__list li{color:rgba(255,255,255,0.55);}
-.card--inv .card__list li::before{background:rgba(255,255,255,0.25);}
-.card--inv:hover{border-color:rgba(255,255,255,0.25);}
-
-/* CHECK LIST */
-.check-list{display:flex;flex-direction:column;gap:11px;margin-bottom:28px;}
-.check-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text);line-height:1.5;}
-.check{width:18px;height:18px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.check svg{width:10px;height:10px;color:white;}
-
-/* PRODUCT ROW */
-.product-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:64px 0;border-bottom:1px solid var(--border-lt);}
-.product-row:last-child{border-bottom:none;}
-.product-row--rev .product-row__visual{order:-1;}
-.product-row__visual{background:var(--off);border-radius:var(--r-lg);height:320px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-lt);}
-.product-row__kicker{font-family:var(--font-head);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;}
-.product-row__title{font-size:28px;font-weight:800;color:var(--black);margin-bottom:14px;line-height:1.15;letter-spacing:-0.02em;font-family:var(--font-head);}
-.product-row__body{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:24px;}
-
-/* SECTORS */
-.sector-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
-.sector-card{background:var(--white);border:1px solid var(--border-lt);border-radius:var(--r);padding:20px 14px;text-align:center;transition:var(--t);}
-.sector-card:hover{border-color:var(--black);transform:translateY(-2px);}
-.sector-card__icon{font-size:24px;margin-bottom:8px;display:block;}
-.sector-card__name{font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);line-height:1.4;}
-
-/* STAT STRIP */
-.stat-strip{background:var(--black);padding:56px 0;}
-.stat-strip__grid{display:grid;grid-template-columns:repeat(4,1fr);}
-.stat-strip__item{text-align:center;padding:0 24px;border-right:1px solid rgba(255,255,255,0.07);}
-.stat-strip__item:last-child{border-right:none;}
-.stat-strip__num{font-family:var(--font-head);font-size:40px;font-weight:800;color:var(--white);line-height:1;margin-bottom:6px;}
-.stat-strip__num span{color:rgba(255,255,255,0.3);}
-.stat-strip__label{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.5;}
-
-/* PRICING */
-.pricing-block{background:var(--black);border-radius:var(--r-lg);padding:48px;}
-.pricing-formula{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:32px 0;}
-.pf-block{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:18px 20px;text-align:center;flex:1;min-width:120px;}
-.pf-block-val{font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
-.pf-block-label{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;}
-.pf-op{font-family:var(--font-head);font-size:22px;font-weight:800;color:rgba(255,255,255,0.2);padding:0 10px;align-self:center;}
-.pf-result{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r);padding:18px 20px;text-align:center;flex:1;min-width:120px;}
-.pf-result-val{font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
-.pf-result-label{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.06em;text-transform:uppercase;}
-
-/* MCA CALC */
-.mca-calc{background:var(--black2);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-lg);padding:32px;}
-.mca-calc__label{font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
-.mca-calc__input{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r);padding:13px 16px;font-family:var(--font-head);font-size:22px;font-weight:700;color:white;width:100%;margin-bottom:20px;outline:none;transition:var(--t);}
-.mca-calc__input:focus{border-color:rgba(255,255,255,0.3);}
-.mca-calc__result{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:18px 20px;}
-.mca-calc__result-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
-.mca-calc__result-row:last-child{border-bottom:none;padding-bottom:0;}
-.mca-calc__rl{font-size:12px;color:rgba(255,255,255,0.4);}
-.mca-calc__rv{font-family:var(--font-head);font-weight:700;color:white;font-size:13px;}
-.mca-calc__rv--hl{color:#34D399;font-size:20px;}
-
-/* FAQ */
-.faq-item{border-bottom:1px solid var(--border-lt);}
-.faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;gap:16px;}
-.faq-q h4{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);line-height:1.35;}
-.faq-q__icon{width:26px;height:26px;border-radius:50%;background:var(--off);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--t);font-size:16px;color:var(--black);font-weight:700;font-family:var(--font-head);}
-.faq-ans{display:none;padding-bottom:18px;font-size:14px;line-height:1.75;color:var(--muted);}
-.faq-item.open .faq-ans{display:block;}
-.faq-item.open .faq-q__icon{background:var(--black);color:white;transform:rotate(45deg);}
-
-/* CTA BAND */
-.cta-band{background:var(--black);padding:72px 0;position:relative;overflow:hidden;}
-.cta-band__rule{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);}
-.cta-band__content{text-align:center;}
-.cta-band__title{font-size:clamp(26px,4vw,42px);font-weight:800;color:white;margin-bottom:14px;line-height:1.12;letter-spacing:-0.02em;font-family:var(--font-head);}
-.cta-band__sub{font-size:17px;color:rgba(255,255,255,0.45);margin-bottom:36px;font-weight:300;}
-.cta-band__actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;}
-
-/* FORM */
-.form-card{background:var(--white);border-radius:var(--r-lg);padding:44px;box-shadow:var(--shadow-lg);border:1px solid var(--border-lt);}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.form-group{display:flex;flex-direction:column;gap:6px;}
-.form-group--full{grid-column:1/-1;}
-label{font-family:var(--font-head);font-size:10px;font-weight:700;color:var(--black);letter-spacing:0.08em;text-transform:uppercase;}
-input,select,textarea{background:var(--off);border:1.5px solid var(--border-lt);border-radius:var(--r);padding:12px 14px;font-family:var(--font-body);font-size:14px;color:var(--text);transition:var(--t);outline:none;width:100%;}
-input:focus,select:focus,textarea:focus{border-color:var(--black);background:white;}
-textarea{resize:vertical;min-height:110px;}
-select{-webkit-appearance:none;cursor:pointer;}
-
-/* ABOUT */
-.about-split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
-.value-item{display:flex;gap:18px;padding:24px 0;border-bottom:1px solid var(--border-lt);}
-.value-item:last-child{border-bottom:none;}
-.value-item__num{font-family:var(--font-head);font-size:30px;font-weight:800;color:var(--black);opacity:0.1;line-height:1;flex-shrink:0;width:40px;}
-.value-item__title{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);margin-bottom:6px;}
-.value-item__body{font-size:13px;line-height:1.7;color:var(--muted);}
-
-/* FOOTER */
-.footer{background:var(--black);padding:64px 0 28px;}
-.footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:56px;}
-.footer__logo{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
-.footer__logo-mark{width:28px;height:28px;border-radius:5px;background:#111;display:flex;align-items:center;justify-content:center;}
-.footer__logo-mark img{width:22px;height:22px;object-fit:contain;}
-.footer__logo-text{font-family:var(--font-head);font-size:16px;font-weight:800;color:white;}
-.footer__desc{font-size:12px;line-height:1.8;color:rgba(255,255,255,0.3);max-width:240px;margin-bottom:20px;}
-.footer__col-title{font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,0.25);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
-.footer__links{display:flex;flex-direction:column;gap:9px;}
-.footer__link{font-size:12px;color:rgba(255,255,255,0.4);transition:var(--t);}
-.footer__link:hover{color:rgba(255,255,255,0.8);}
-.footer__bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;align-items:start;gap:24px;flex-wrap:wrap;}
-.footer__legal{font-size:11px;color:rgba(255,255,255,0.2);line-height:1.7;max-width:680px;}
-.footer__copy{font-size:11px;color:rgba(255,255,255,0.2);white-space:nowrap;}
-
-/* PAGES */
-.page{display:none;}
-.page.active{display:block;}
-
-/* RESPONSIVE */
-@media(max-width:960px){
-  .hero__layout,.about-split{grid-template-columns:1fr;}
-  .compare-card{display:none;}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr 1fr;}
-  .product-row{grid-template-columns:1fr;gap:32px;}
-  .product-row--rev .product-row__visual{order:0;}
-  .stat-strip__grid{grid-template-columns:1fr 1fr;gap:24px;}
-  .stat-strip__item{border-right:none;padding-bottom:24px;}
-  .sector-grid{grid-template-columns:repeat(3,1fr);}
-  .footer__grid{grid-template-columns:1fr 1fr;gap:36px;}
-}
-@media(max-width:640px){
-  .container{padding:0 18px;}
-  .section{padding:60px 0;}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
-  .nav__links,.nav__cta{display:none;}
-  .nav__hamburger{display:flex;}
-  .sector-grid{grid-template-columns:repeat(2,1fr);}
-  .form-grid{grid-template-columns:1fr;}
-  .form-card{padding:28px 20px;}
-  .pricing-block{padding:28px 20px;}
-  .footer__grid{grid-template-columns:1fr;}
-  .footer__bottom{flex-direction:column;}
-  .hero__proof{gap:20px;}
-  .hero__proof-div{display:none;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payhorizon — Independent Merchant Services Broker</title>
+  <meta name="description" content="Payhorizon introduces UK businesses to the right card payment solution across six FCA-regulated acquiring banks. Free rate review. 18–48 month contracts. IC++ pricing available.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.payhorizon.co.uk/">
+  <link rel="stylesheet" href="css/style.css">
+  <meta property="og:title" content="Payhorizon — Independent Merchant Services Broker">
+  <meta property="og:description" content="Free, independent advice on card payment solutions for UK businesses. Six acquiring banks. Full rate transparency.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.payhorizon.co.uk">
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="mainNav">
+<div id="nav-ph"></div>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-orb" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line" aria-hidden="true"></div>
+      <span class="hero-eyebrow-text">Independent UK Merchant Services Broker</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line filled">Stop</span>
+      <span class="line stroke">overpaying</span>
+      <span class="line filled">for <span class="accent">payments.</span></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <div class="hero-desc">
+        <p>We compare six FCA-regulated acquiring banks and introduce your business to the best deal — on rate, approval, and fit. No pressure. No hidden markup. Just the right solution.</p>
+      </div>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-teal btn-lg">
+          Get my free review
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="services.html" class="btn btn-ghost btn-lg">Our services</a>
+      </div>
+    </div>
+
+    <div class="hero-stats" role="list" aria-label="Key figures">
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">
+          <span data-target="6" data-suffix="">6</span><span style="color:var(--teal)">+</span>
+        </div>
+        <div class="hero-stat-label">Acquiring banks on panel</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">
+          £<span data-target="0" data-suffix="">0</span>
+        </div>
+        <div class="hero-stat-label">Cost to you for advice</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">
+          <span data-target="18" data-suffix="">18</span><span style="color:var(--teal)">–48</span>
+        </div>
+        <div class="hero-stat-label">Month contract options</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">
+          IC<span>++</span>
+        </div>
+        <div class="hero-stat-label">Transparent pricing available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TICKER
+════════════════════════════════════════ -->
+<div class="ticker" aria-hidden="true" role="presentation">
+  <div class="ticker-track">
+    <!-- doubled for seamless loop -->
+    <span class="ticker-item">AIB Merchant Services<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Elavon<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Trust Payments<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Worldpay<span class="ticker-dot"></span></span>
+    <span class="ticker-item">emerchantpay<span class="ticker-dot"></span></span>
+    <span class="ticker-item">payabl.<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Card Terminals<span class="ticker-dot"></span></span>
+    <span class="ticker-item">IC++ Pricing<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Open Banking<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Business Funding<span class="ticker-dot"></span></span>
+    <span class="ticker-item">EPOS Systems<span class="ticker-dot"></span></span>
+    <span class="ticker-item">18–48 Month Contracts<span class="ticker-dot"></span></span>
+    <span class="ticker-item">AIB Merchant Services<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Elavon<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Trust Payments<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Worldpay<span class="ticker-dot"></span></span>
+    <span class="ticker-item">emerchantpay<span class="ticker-dot"></span></span>
+    <span class="ticker-item">payabl.<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Card Terminals<span class="ticker-dot"></span></span>
+    <span class="ticker-item">IC++ Pricing<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Open Banking<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Business Funding<span class="ticker-dot"></span></span>
+    <span class="ticker-item">EPOS Systems<span class="ticker-dot"></span></span>
+    <span class="ticker-item">18–48 Month Contracts<span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════ -->
+<section class="section how" aria-labelledby="how-title" id="how">
   <div class="container">
-    <div class="nav__inner">
-      <a class="nav__logo" href="#" onclick="showPage('home')">
-        <div class="nav__logo-mark"><img src="data:image/jpeg;base64,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" alt="Payhorizon mark"></div>
-        <span class="nav__logo-text">Payhorizon</span>
+    <div class="label reveal">Process</div>
+    <h2 class="h2 reveal reveal-delay-1" id="how-title">From enquiry to <span class="teal">live account</span></h2>
+    <div class="how-grid reveal reveal-delay-2" role="list">
+      <div class="how-step" role="listitem">
+        <div class="how-step-num">01</div>
+        <div class="how-step-title">Free rate review</div>
+        <p class="how-step-body">Tell us about your business, card turnover, and what you're paying now. No obligation — just an honest picture of where you stand and what's available.</p>
+        <svg class="how-step-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="how-step" role="listitem">
+        <div class="how-step-num">02</div>
+        <div class="how-step-title">We compare the panel</div>
+        <p class="how-step-body">We run your profile against all six acquiring banks — matching on rate competitiveness, sector approval likelihood, and the right terminal or gateway for your setup.</p>
+        <svg class="how-step-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="how-step" role="listitem">
+        <div class="how-step-num">03</div>
+        <div class="how-step-title">We handle your application</div>
+        <p class="how-step-body">We manage the application end to end — paperwork, KYC, liaising with the underwriting team, and keeping you updated at every stage. You don't chase; we do.</p>
+        <svg class="how-step-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="how-step" role="listitem">
+        <div class="how-step-num">04</div>
+        <div class="how-step-title">You go live &amp; we stay</div>
+        <p class="how-step-body">Account approved, terminal delivered, payments live. We remain your first point of contact for rate queries, disputes, upgrades, and anything else that comes up.</p>
+        <svg class="how-step-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICES GRID
+════════════════════════════════════════ -->
+<section class="section services" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="services-intro">
+      <div>
+        <div class="label reveal">What we offer</div>
+        <h2 class="h2 reveal reveal-delay-1" id="services-title">Six solutions,<br><span class="teal">one broker.</span></h2>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="body-lg">From a single card machine to enterprise-scale processing. We don't push products — we find the right one for your business, volume, and sector.</p>
+        <div style="margin-top:24px;">
+          <a href="services.html" class="btn btn-ghost">Explore all services</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-grid reveal">
+      <!-- Row 1 -->
+      <div class="service-card">
+        <div class="service-card-num">01</div>
+        <div class="service-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="service-card-title">Card Terminals</div>
+        <p class="service-card-body">Countertop, portable, and SIM-enabled mobile terminals from Ingenico, Castles, Clover, and Worldpay. 18–48 month rental or outright purchase.</p>
+        <div class="service-card-features">
+          <span class="service-feature-tag">Contactless</span>
+          <span class="service-feature-tag">Apple Pay</span>
+          <span class="service-feature-tag">Google Pay</span>
+          <span class="service-feature-tag">18–48 months</span>
+        </div>
+        <div class="service-card-bg-num" aria-hidden="true">01</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">02</div>
+        <div class="service-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="service-card-title">EPOS Systems</div>
+        <p class="service-card-body">Integrated point-of-sale including Clover Flex, Mini, and Station Duo 2. Stock management, staff reporting, and app marketplace on one screen.</p>
+        <div class="service-card-features">
+          <span class="service-feature-tag">Clover Flex</span>
+          <span class="service-feature-tag">Clover Mini</span>
+          <span class="service-feature-tag">Station Duo 2</span>
+          <span class="service-feature-tag">SkyTab POS</span>
+        </div>
+        <div class="service-card-bg-num" aria-hidden="true">02</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">03</div>
+        <div class="service-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="service-card-title">IC++ Pricing</div>
+        <p class="service-card-body">Interchange-plus pricing — pay exactly what Visa or Mastercard charges, plus a fixed acquirer margin. Full cost visibility on every statement. Major savings at volume.</p>
+        <div class="service-card-features">
+          <span class="service-feature-tag">Full transparency</span>
+          <span class="service-feature-tag">Volume savings</span>
+          <span class="service-feature-tag">Multi-acquirer</span>
+        </div>
+        <div class="service-card-bg-num" aria-hidden="true">03</div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="service-card wide">
+        <div class="service-card-num">04</div>
+        <div class="service-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="service-card-title">Online Payments &amp; Gateways</div>
+        <p class="service-card-body">Payment gateway integrations for eCommerce, subscription, and MOTO businesses. We access acquirers including emerchantpay (high-risk and cross-border), Trust Payments (gateway + acquiring), payabl. (EU and multi-currency), and Worldpay (enterprise scale). 3DS2, multi-currency, and cross-border settlement available across the panel.</p>
+        <div class="service-card-features">
+          <span class="service-feature-tag">High-risk merchants</span>
+          <span class="service-feature-tag">Cross-border</span>
+          <span class="service-feature-tag">Multi-currency</span>
+          <span class="service-feature-tag">3DS2</span>
+          <span class="service-feature-tag">Subscription billing</span>
+          <span class="service-feature-tag">WooCommerce</span>
+          <span class="service-feature-tag">Shopify</span>
+          <span class="service-feature-tag">Custom API</span>
+        </div>
+        <div class="service-card-bg-num" aria-hidden="true">04</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">05</div>
+        <div class="service-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12m0 0V2m0 10H2m10 0h10"/></svg>
+        </div>
+        <div class="service-card-title">Open Banking A2A</div>
+        <p class="service-card-body">Account-to-account payments with zero interchange fees. Pay-by-bank via QR code, payment link, or checkout integration. Instant settlement. Ideal for high-volume businesses looking to cut processing costs to near zero.</p>
+        <div class="service-card-features">
+          <span class="service-feature-tag">Zero interchange</span>
+          <span class="service-feature-tag">Instant settlement</span>
+          <span class="service-feature-tag">QR code</span>
+          <span class="service-feature-tag">Payment link</span>
+        </div>
+        <div class="service-card-bg-num" aria-hidden="true">05</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">06</div>
+        <div class="service-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div class="service-card-title">Business Funding (MCA)</div>
+        <p class="service-card-body">Merchant Cash Advances from £5,000 to £500,000 — repaid as a percentage of daily card takings. No fixed monthly payment, no fixed term. Quiet months cost you less automatically.</p>
+        <div class="service-card-features">
+          <span class="service-feature-tag">£5K–£500K</span>
+          <span class="service-feature-tag">Revenue-linked repayment</span>
+          <span class="service-feature-tag">Fast decisions</span>
+        </div>
+        <div class="service-card-bg-num" aria-hidden="true">06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     IC++ EXPLAINER
+════════════════════════════════════════ -->
+<section class="icpp" id="icpp" aria-labelledby="icpp-title">
+  <div class="container icpp-grid">
+    <div>
+      <div class="label icpp-label reveal">Pricing model</div>
+      <h2 class="h2 reveal reveal-delay-1" id="icpp-title">What IC++ actually means<br>for your business</h2>
+      <p class="body-lg reveal reveal-delay-2" style="margin-top:20px;">Most merchants are on blended rates — one percentage regardless of card type. IC++ shows every component. Debit cards cost less than premium credit cards, and you pay the difference, not a blended average that always favours the acquirer.</p>
+      <div class="icpp-actions reveal reveal-delay-3">
+        <a href="contact.html" class="btn btn-ink btn-lg">See how much I could save</a>
+        <a href="services.html#icpp" class="btn btn-ghost-dark btn-lg">Learn more</a>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="icpp-table" role="table" aria-label="IC++ rate breakdown example">
+        <div class="icpp-row" role="row">
+          <span class="icpp-row-label">Interchange (Visa consumer debit)</span>
+          <span class="icpp-row-val">0.20%</span>
+        </div>
+        <div class="icpp-row" role="row">
+          <span class="icpp-row-label">Card scheme fee</span>
+          <span class="icpp-row-val">0.04%</span>
+        </div>
+        <div class="icpp-row" role="row">
+          <span class="icpp-row-label">Acquirer margin (fixed)</span>
+          <span class="icpp-row-val">0.10%</span>
+        </div>
+        <div class="icpp-row total" role="row">
+          <span class="icpp-row-label">Total you pay</span>
+          <span class="icpp-row-val">0.34%</span>
+        </div>
+      </div>
+      <p class="icpp-note">Illustrative example. Actual rates depend on acquirer, card type, and volume. Blended rates for the same transaction are typically 0.6–1.0%.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     WHY PAYHORIZON
+════════════════════════════════════════ -->
+<section class="section why" id="why" aria-labelledby="why-title">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="label reveal">Why choose us</div>
+        <h2 class="h2 reveal reveal-delay-1" id="why-title">Independent means<br><span class="teal">we work for you.</span></h2>
+
+        <div class="comparison-table reveal reveal-delay-2" role="table" aria-label="Payhorizon vs going direct">
+          <div class="comparison-head" role="row">
+            <div class="comp-head-cell feature">What you need</div>
+            <div class="comp-head-cell us">Payhorizon</div>
+            <div class="comp-head-cell them">Going direct</div>
+          </div>
+          <div class="comparison-row" role="row">
+            <div class="comp-cell feature">Multiple acquirers compared</div>
+            <div class="comp-cell us"><span class="comp-tick">✓</span> 6 banks compared</div>
+            <div class="comp-cell them"><span class="comp-cross">✗</span> 1 bank only</div>
+          </div>
+          <div class="comparison-row" role="row">
+            <div class="comp-cell feature">IC++ pricing option</div>
+            <div class="comp-cell us"><span class="comp-tick">✓</span> Available across panel</div>
+            <div class="comp-cell them"><span class="comp-cross">✗</span> Blended rate only</div>
+          </div>
+          <div class="comparison-row" role="row">
+            <div class="comp-cell feature">Application handled for you</div>
+            <div class="comp-cell us"><span class="comp-tick">✓</span> End to end</div>
+            <div class="comp-cell them"><span class="comp-cross">✗</span> You do it yourself</div>
+          </div>
+          <div class="comparison-row" role="row">
+            <div class="comp-cell feature">Unbiased advice</div>
+            <div class="comp-cell us"><span class="comp-tick">✓</span> Independent broker</div>
+            <div class="comp-cell them"><span class="comp-cross">✗</span> Sales rep with quota</div>
+          </div>
+          <div class="comparison-row" role="row">
+            <div class="comp-cell feature">Ongoing support</div>
+            <div class="comp-cell us"><span class="comp-tick">✓</span> Your named contact</div>
+            <div class="comp-cell them"><span class="comp-cross">✗</span> Call centre</div>
+          </div>
+          <div class="comparison-row" role="row">
+            <div class="comp-cell feature">Cost to you</div>
+            <div class="comp-cell us"><span class="comp-tick">✓</span> Free</div>
+            <div class="comp-cell them"><span class="comp-cross">—</span> Free</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-aside">
+        <div class="label reveal">Our principles</div>
+        <div class="why-points">
+          <div class="why-point reveal reveal-delay-1">
+            <div class="why-point-num">01</div>
+            <div>
+              <div class="why-point-title">Full rate transparency</div>
+              <p class="why-point-body">Every rate explained. IC++ pricing means you see exactly what you're paying and why — no blended surprises, no hidden margins.</p>
+            </div>
+          </div>
+          <div class="why-point reveal reveal-delay-2">
+            <div class="why-point-num">02</div>
+            <div>
+              <div class="why-point-title">FCA-regulated panel</div>
+              <p class="why-point-body">Every acquirer on our panel is FCA-regulated. We operate as an introducer under MWBS (FRN 1003907). You're always in safe hands.</p>
+            </div>
+          </div>
+          <div class="why-point reveal reveal-delay-3">
+            <div class="why-point-num">03</div>
+            <div>
+              <div class="why-point-title">No quota pressure</div>
+              <p class="why-point-body">We're not tied to one provider. We recommend based on what's right for your business — approval likelihood, rate, and sector fit.</p>
+            </div>
+          </div>
+          <div class="why-point reveal reveal-delay-4">
+            <div class="why-point-num">04</div>
+            <div>
+              <div class="why-point-title">Ongoing named support</div>
+              <p class="why-point-body">We don't disappear post-sign-up. Rate changed? Terminal issue? Application question? One contact, throughout your contract.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTORS
+════════════════════════════════════════ -->
+<section class="section sectors" id="sectors" aria-labelledby="sectors-title">
+  <div class="container">
+    <div class="label reveal">Who we serve</div>
+    <h2 class="h2 reveal reveal-delay-1" id="sectors-title">Built for businesses<br><span class="teal">across every sector.</span></h2>
+    <div class="sectors-grid reveal reveal-delay-2">
+      <div class="sector-card">
+        <span class="sector-icon" aria-hidden="true">🚕</span>
+        <div class="sector-title">Taxi &amp; Transport</div>
+        <p class="sector-body">PCO operators, fleets, chauffeur firms. SIM-enabled portable terminals, fleet accounts, and MCA for vehicle capex.</p>
+        <svg class="sector-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="sector-card">
+        <span class="sector-icon" aria-hidden="true">🍽️</span>
+        <div class="sector-title">Hospitality</div>
+        <p class="sector-body">Restaurants, pubs, cafes, hotels. Table-side terminals, EPOS with kitchen integration, and split-bill functionality.</p>
+        <svg class="sector-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="sector-card">
+        <span class="sector-icon" aria-hidden="true">🛍️</span>
+        <div class="sector-title">Retail</div>
+        <p class="sector-body">High street and market traders. Countertop or portable terminals with stock and end-of-day reporting.</p>
+        <svg class="sector-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="sector-card">
+        <span class="sector-icon" aria-hidden="true">🏢</span>
+        <div class="sector-title">Enterprise &amp; Public Sector</div>
+        <p class="sector-body">Parking operators, councils, NHS Trusts, utilities. IC++ at scale and open banking to eliminate interchange entirely.</p>
+        <svg class="sector-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="sector-card">
+        <span class="sector-icon" aria-hidden="true">🌐</span>
+        <div class="sector-title">eCommerce &amp; High-Risk</div>
+        <p class="sector-body">Online retailers, subscriptions, and higher-risk MCC categories. Gateway integrations, 3DS2, multi-currency, cross-border.</p>
+        <svg class="sector-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="sector-card">
+        <span class="sector-icon" aria-hidden="true">✂️</span>
+        <div class="sector-title">Health, Beauty &amp; Trades</div>
+        <p class="sector-body">Salons, clinics, barbers, contractors. Simple reliable terminals, low minimum volumes, no-fuss approval.</p>
+        <svg class="sector-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+    </div>
+    <div style="margin-top:32px;" class="reveal">
+      <a href="sectors.html" class="btn btn-ghost">View all sectors</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CTA
+════════════════════════════════════════ -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="cta-bg-text" aria-hidden="true">SAVE</div>
+  <div class="container cta-inner">
+    <div class="label" style="justify-content:center;" aria-hidden="true">Free &amp; no obligation</div>
+    <h2 class="cta-title reveal">
+      Ready to find out<br>what you <span class="teal">should</span> be paying?
+    </h2>
+    <p class="cta-body reveal reveal-delay-1">A 15-minute conversation could save your business thousands a year. No commitment, no pressure.</p>
+    <div class="cta-actions reveal reveal-delay-2">
+      <a href="contact.html" class="btn btn-teal btn-lg">
+        Get my free review
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <div class="nav__links">
-        <a class="nav__link" href="#" onclick="showPage('sme')">For Business</a>
-        <a class="nav__link" href="#" onclick="showPage('enterprise')">Enterprise</a>
-        <a class="nav__link" href="#" onclick="showPage('mca')">Business Funding</a>
-        <a class="nav__link" href="#" onclick="showPage('ecommerce')">E-Commerce</a>
-        <a class="nav__link" href="#" onclick="showPage('about')">About</a>
-      </div>
-      <a class="btn btn-white nav__cta" href="#" onclick="showPage('contact')">Get a cost comparison</a>
-      <button class="nav__hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-
-<!-- ══ HOME ══════════════════════════════════════════════ -->
-<div class="page active" id="page-home">
-
-<section class="hero">
-  <div class="hero__noise"></div>
-  <div class="hero__line"></div>
-  <div class="container">
-    <div class="hero__layout">
-      <div class="hero__content">
-        <div class="hero__kicker">
-          <div class="hero__kicker-dot"></div>
-          <span class="hero__kicker-text">Independent Merchant Services · UK</span>
-        </div>
-        <h1 class="hero__title">Payments that work<br>for <em>you.</em><br>Not the bank.</h1>
-        <p class="hero__sub">Most businesses overpay for card payments — because nobody showed them the full picture. We fix that. Independent, transparent, on your side.</p>
-        <div class="hero__actions">
-          <a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Get a free cost comparison <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          <a href="#" onclick="showPage('about')" class="btn btn-outline-white btn-lg">Our story</a>
-        </div>
-        <div class="hero__proof">
-          <div class="hero__proof-item"><span class="hero__proof-num">16+</span><span class="hero__proof-label">Acquirer options</span></div>
-          <div class="hero__proof-div"></div>
-          <div class="hero__proof-item"><span class="hero__proof-num">£1M</span><span class="hero__proof-label">Max MCA funding</span></div>
-          <div class="hero__proof-div"></div>
-          <div class="hero__proof-item"><span class="hero__proof-num">3–4</span><span class="hero__proof-label">Days to live</span></div>
-          <div class="hero__proof-div"></div>
-          <div class="hero__proof-item"><span class="hero__proof-num">UK</span><span class="hero__proof-label">Independent broker</span></div>
-        </div>
-      </div>
-      <div class="compare-card">
-        <div class="compare-card__head">
-          <div class="compare-card__dot" style="background:#F87171;"></div>
-          <div class="compare-card__dot" style="background:#FBBF24;margin-left:4px;"></div>
-          <div class="compare-card__dot" style="background:#34D399;margin-left:4px;"></div>
-          <span class="compare-card__head-title" style="margin-left:8px;">Cost comparison — illustrative</span>
-        </div>
-        <div class="compare-card__row"><span class="compare-card__label">Monthly card volume</span><span class="compare-card__val">£85,000</span></div>
-        <div class="compare-card__row"><span class="compare-card__label">Current blended rate</span><span class="compare-card__val">1.75%</span></div>
-        <div class="compare-card__row"><span class="compare-card__label">Current monthly cost</span><span class="compare-card__val">£1,488</span></div>
-        <hr class="compare-card__divider">
-        <div class="compare-card__row"><span class="compare-card__label">Payhorizon IC++ rate (est.)</span><span class="compare-card__val compare-card__val--good">0.74%</span></div>
-        <div class="compare-card__row"><span class="compare-card__label">Payhorizon monthly cost</span><span class="compare-card__val compare-card__val--good">£629</span></div>
-        <hr class="compare-card__divider">
-        <div class="compare-card__row"><span class="compare-card__label">Estimated annual saving</span><span class="compare-card__val compare-card__val--save">£10,308</span></div>
-        <div class="compare-card__footer">Illustrative figures based on a typical UK retail card mix. Your actual rate depends on card type, volume, and sector. We'll show you the real numbers — free.</div>
-      </div>
+      <a href="acquirers.html" class="btn btn-ghost btn-lg">See our full panel</a>
     </div>
   </div>
 </section>
 
-<div class="trustbar">
-  <div class="container">
-    <div class="trustbar__inner">
-      <div class="trustbar__item"><svg class="trustbar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="trustbar__text">FCA-Regulated Acquirers</span></div>
-      <div class="trustbar__item"><svg class="trustbar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg><span class="trustbar__text">UK Independent Broker</span></div>
-      <div class="trustbar__item"><svg class="trustbar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="trustbar__text">Live in 3–4 Days</span></div>
-      <div class="trustbar__item"><svg class="trustbar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="trustbar__text">IC++ Transparent Pricing</span></div>
-      <div class="trustbar__item"><svg class="trustbar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="trustbar__text">Dedicated Account Manager</span></div>
-    </div>
-  </div>
-</div>
+<div id="footer-ph"></div>
 
-<section class="section">
-  <div class="container">
-    <div class="text-center" style="max-width:580px;margin:0 auto 56px;">
-      <span class="eyebrow">Why Payhorizon</span>
-      <h2 class="section-title">The payment market is broken.<br>We built something better.</h2>
-      <p class="section-sub">We've been merchants. We know what it's like to sign up for "competitive rates" and spend the next three years wondering why the bill keeps creeping up.</p>
-    </div>
-    <div class="grid-3">
-      <div class="card">
-        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
-        <div class="card__title">Not tied to anyone</div>
-        <p class="card__body">We work with a panel of 16+ UK acquirers. We choose what's right for your business — not what pays us the most. No allegiances. No hidden agenda.</p>
-      </div>
-      <div class="card card--inv">
-        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <div class="card__title">You see everything</div>
-        <p class="card__body">IC++ pricing means you see the exact interchange cost and our margin as separate line items. No blended rate. No surprises. Just honest numbers.</p>
-      </div>
-      <div class="card">
-        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="card__title">One person. Full picture.</div>
-        <p class="card__body">You get a named account manager who handles everything from application to live — and stays available after. Not a call centre. A real contact.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--alt">
-  <div class="container">
-    <div class="grid-2" style="gap:72px;align-items:center;">
-      <div>
-        <span class="eyebrow">Who we serve</span>
-        <h2 class="section-title">From the local café to the city-wide transport network</h2>
-        <p class="section-sub" style="margin-bottom:32px;">We work with two kinds of businesses — and we're genuinely good at both.</p>
-        <div style="display:flex;flex-direction:column;gap:20px;">
-          <div style="display:flex;gap:16px;align-items:flex-start;">
-            <div style="width:40px;height:40px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <div>
-              <div style="font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);margin-bottom:5px;">Small &amp; Medium Business</div>
-              <div style="font-size:13px;line-height:1.7;color:var(--muted);">Retail, hospitality, trades, gyms, salons. You need it simple, fast, and fairly priced. We sort it — usually within days.</div>
-              <a href="#" onclick="showPage('sme')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);margin-top:8px;text-transform:uppercase;letter-spacing:0.06em;">SME solutions <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-            </div>
-          </div>
-          <div style="display:flex;gap:16px;align-items:flex-start;">
-            <div style="width:40px;height:40px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <div>
-              <div style="font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);margin-bottom:5px;">High-Volume &amp; Institutional</div>
-              <div style="font-size:13px;line-height:1.7;color:var(--muted);">Transport, parking, councils, housing associations, healthcare. We understand scale, compliance, and the reporting you actually need.</div>
-              <a href="#" onclick="showPage('enterprise')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);margin-top:8px;text-transform:uppercase;letter-spacing:0.06em;">Enterprise solutions <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="sector-grid" style="grid-template-columns:repeat(3,1fr);">
-        <div class="sector-card"><span class="sector-card__icon">🏪</span><span class="sector-card__name">Retail</span></div>
-        <div class="sector-card"><span class="sector-card__icon">🍽️</span><span class="sector-card__name">Hospitality</span></div>
-        <div class="sector-card"><span class="sector-card__icon">🚌</span><span class="sector-card__name">Transport</span></div>
-        <div class="sector-card"><span class="sector-card__icon">🅿️</span><span class="sector-card__name">Parking</span></div>
-        <div class="sector-card"><span class="sector-card__icon">🏛️</span><span class="sector-card__name">Government</span></div>
-        <div class="sector-card"><span class="sector-card__icon">🏥</span><span class="sector-card__name">Healthcare</span></div>
-        <div class="sector-card"><span class="sector-card__icon">🎓</span><span class="sector-card__name">Education</span></div>
-        <div class="sector-card"><span class="sector-card__icon">🏠</span><span class="sector-card__name">Housing</span></div>
-        <div class="sector-card"><span class="sector-card__icon">⚡</span><span class="sector-card__name">Utilities</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="text-center" style="max-width:540px;margin:0 auto 52px;">
-      <span class="eyebrow">What we offer</span>
-      <h2 class="section-title">Everything you need to take payments</h2>
-    </div>
-    <div class="grid-3">
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><div class="card__title">Card Terminals</div><p class="card__body">Countertop, portable, and mobile. Contactless, chip & PIN, digital wallets. Ready in days.</p><a href="#" onclick="showPage('sme')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;">Learn more →</a></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="card__title">Smart Payment App</div><p class="card__body">Take payments anywhere. Pay by Link, split payments, gratuities, real-time reporting in one app.</p><a href="#" onclick="showPage('sme')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;">Learn more →</a></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="card__title">E-Commerce</div><p class="card__body">Hosted checkout, API integration, virtual terminal, MOTO, and Pay by Link. PCI-compliant.</p><a href="#" onclick="showPage('ecommerce')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;">Learn more →</a></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="card__title">EPOS Solutions</div><p class="card__body">Full point-of-sale for retail and hospitality. Integrated payments, inventory, staff, reporting.</p><a href="#" onclick="showPage('sme')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;">Learn more →</a></div>
-      <div class="card card--inv"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="card__title">Merchant Cash Advance</div><p class="card__body">£5k–£1M funding based on your card turnover. No fixed repayments — repay as a % of daily sales.</p><a href="#" onclick="showPage('mca')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,0.7);margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;">See how it works →</a></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="card__title">Pay by Link</div><p class="card__body">Send a secure payment link via email or SMS. Customers pay from any device. From 15p per transaction.</p><a href="#" onclick="showPage('ecommerce')" style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--black);margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;">Learn more →</a></div>
-    </div>
-  </div>
-</section>
-
-<div class="cta-band">
-  <div class="cta-band__rule"></div>
-  <div class="container">
-    <div class="cta-band__content">
-      <h2 class="cta-band__title">Not sure what you're paying now?<br>That's exactly why we exist.</h2>
-      <p class="cta-band__sub">Send us your latest merchant statement. We'll analyse it and show you a like-for-like comparison — free, no commitment, no sales pressure.</p>
-      <div class="cta-band__actions">
-        <a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Get my free cost comparison</a>
-        <a href="#" onclick="showPage('about')" class="btn btn-outline-white btn-lg">Read our story</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-</div><!-- /home -->
-
-<!-- ══ ENTERPRISE ════════════════════════════════════════ -->
-<div class="page" id="page-enterprise">
-<div style="height:68px;background:var(--black);"></div>
-<section style="background:var(--black);padding:72px 0 88px;">
-  <div class="container">
-    <div style="max-width:680px;">
-      <span class="eyebrow eyebrow--white">Enterprise &amp; Institutional</span>
-      <h1 style="font-family:var(--font-head);font-size:clamp(36px,5vw,60px);font-weight:800;color:white;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Payment infrastructure<br>built for volume.</h1>
-      <p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.5);margin-bottom:36px;font-weight:300;">Transport networks, parking operators, local authorities, housing associations, healthcare groups. Your requirements are not standard — and neither is our approach.</p>
-      <a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Request an enterprise consultation</a>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="text-center" style="max-width:580px;margin:0 auto 52px;">
-      <span class="eyebrow">Sectors we serve</span>
-      <h2 class="section-title">We understand your industry —<br>not just your payments</h2>
-    </div>
-    <div class="sector-grid">
-      <div class="sector-card"><span class="sector-card__icon">🚌</span><span class="sector-card__name">Transport Operators</span></div>
-      <div class="sector-card"><span class="sector-card__icon">🅿️</span><span class="sector-card__name">Parking Operators</span></div>
-      <div class="sector-card"><span class="sector-card__icon">🏛️</span><span class="sector-card__name">Local Government</span></div>
-      <div class="sector-card"><span class="sector-card__icon">🏥</span><span class="sector-card__name">Private Healthcare</span></div>
-      <div class="sector-card"><span class="sector-card__icon">🏠</span><span class="sector-card__name">Housing Associations</span></div>
-      <div class="sector-card"><span class="sector-card__icon">⚡</span><span class="sector-card__name">Utilities &amp; Telecoms</span></div>
-      <div class="sector-card"><span class="sector-card__icon">🎓</span><span class="sector-card__name">Education &amp; MATs</span></div>
-      <div class="sector-card"><span class="sector-card__icon">🏟️</span><span class="sector-card__name">Events &amp; Venues</span></div>
-      <div class="sector-card"><span class="sector-card__icon">🚚</span><span class="sector-card__name">Logistics &amp; Couriers</span></div>
-      <div class="sector-card"><span class="sector-card__icon">❤️</span><span class="sector-card__name">Charities &amp; NGOs</span></div>
-    </div>
-  </div>
-</section>
-<section class="section section--alt">
-  <div class="container">
-    <div class="grid-2" style="gap:56px;align-items:start;">
-      <div>
-        <span class="eyebrow">Why volume changes everything</span>
-        <h2 class="section-title">At scale, every basis point matters</h2>
-        <p style="font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:28px;">A business processing £1M/month in card payments saves over £100,000 a year by moving from a 1.75% blended rate to a well-structured IC++ rate. That's not a rounding error — that's a budget line.</p>
-        <ul class="check-list">
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>IC++ pricing with volume-based negotiation</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>Multi-location terminal estate management</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>Consolidated reporting across all sites</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>Dedicated senior account management</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>SLA-backed support and escalation paths</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>Full PCI DSS compliance support</li>
-        </ul>
-        <a href="#" onclick="showPage('contact')" class="btn btn-primary" style="margin-top:8px;">Request enterprise consultation</a>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <div class="card"><div class="card__tag">Multi-channel</div><div class="card__title">Card present · CNP · MOTO · Online</div><p class="card__body">Whether your customers pay at a kiosk, online, by phone, or at a staffed desk — we cover every channel through one relationship.</p></div>
-        <div class="card"><div class="card__tag">Reporting</div><div class="card__title">The data your finance team needs</div><p class="card__body">Transaction-level reporting, daily settlement summaries, cost-per-channel breakdowns. Exportable in formats your team already uses.</p></div>
-        <div class="card"><div class="card__tag">Compliance</div><div class="card__title">PCI DSS &amp; public sector ready</div><p class="card__body">Full PCI compliance support, GDPR-aligned data handling, and experience with public sector procurement requirements.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="cta-band"><div class="cta-band__rule"></div><div class="container"><div class="cta-band__content"><h2 class="cta-band__title">Processing over £100k/month?</h2><p class="cta-band__sub">Let us run a full cost analysis. Real numbers, not estimates.</p><div class="cta-band__actions"><a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Request enterprise consultation</a></div></div></div></div>
-</div><!-- /enterprise -->
-
-<!-- ══ MCA ════════════════════════════════════════════════ -->
-<div class="page" id="page-mca">
-<div style="height:68px;background:var(--black);"></div>
-<section style="background:var(--black);padding:72px 0 88px;">
-  <div class="container">
-    <div class="grid-2" style="gap:56px;align-items:center;">
-      <div>
-        <span class="eyebrow eyebrow--white">Business Funding</span>
-        <h1 style="font-family:var(--font-head);font-size:clamp(36px,5vw,58px);font-weight:800;color:white;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Funding that moves as fast as your business</h1>
-        <p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.5);margin-bottom:36px;font-weight:300;">Up to £1,000,000 based on your card turnover. No fixed repayments — you pay back a percentage of what you take each day.</p>
-        <a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Check my eligibility</a>
-      </div>
-      <div class="mca-calc">
-        <div class="mca-calc__label">Monthly card turnover (£)</div>
-        <input class="mca-calc__input" type="number" id="mcaInput" value="25000" oninput="updateMCA()">
-        <div class="mca-calc__result">
-          <div class="mca-calc__result-row"><span class="mca-calc__rl">Estimated advance range</span><span class="mca-calc__rv mca-calc__rv--hl" id="mcaRange">£25,000 – £50,000</span></div>
-          <div class="mca-calc__result-row"><span class="mca-calc__rl">Total repayment (est. 1.38× factor)</span><span class="mca-calc__rv" id="mcaRepay">£34,500 – £69,000</span></div>
-          <div class="mca-calc__result-row"><span class="mca-calc__rl">Daily repayment</span><span class="mca-calc__rv">1%–20% of card sales</span></div>
-          <div class="mca-calc__result-row"><span class="mca-calc__rl">Soft credit check only</span><span class="mca-calc__rv" style="color:#34D399;">No score impact</span></div>
-          <div class="mca-calc__result-row"><span class="mca-calc__rl">Time to funded</span><span class="mca-calc__rv">3–4 working days</span></div>
-        </div>
-        <div style="margin-top:10px;font-size:10px;color:rgba(255,255,255,0.2);line-height:1.6;">Illustrative only. Minimum advance £5,000, minimum 3 months trading. Factor rates 1.03–1.30.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="text-center" style="max-width:520px;margin:0 auto 52px;"><span class="eyebrow">How it works</span><h2 class="section-title">Four steps from application to funded</h2></div>
-    <div class="grid-4">
-      <div style="text-align:center;padding:0 12px;"><div style="width:48px;height:48px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:18px;font-weight:800;color:white;margin:0 auto 16px;">1</div><div style="font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;">Apply online</div><div style="font-size:12px;line-height:1.7;color:var(--muted);">Quick application — ID, business banking, and your website. That's it to start.</div></div>
-      <div style="text-align:center;padding:0 12px;"><div style="width:48px;height:48px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:18px;font-weight:800;color:white;margin:0 auto 16px;">2</div><div style="font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;">Open Banking check</div><div style="font-size:12px;line-height:1.7;color:var(--muted);">Securely share your card processing data. Soft credit check only — no impact on your score.</div></div>
-      <div style="text-align:center;padding:0 12px;"><div style="width:48px;height:48px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:18px;font-weight:800;color:white;margin:0 auto 16px;">3</div><div style="font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;">Receive your offer</div><div style="font-size:12px;line-height:1.7;color:var(--muted);">A clear offer within 24 hours: advance amount, factor rate, daily repayment %. Nothing hidden.</div></div>
-      <div style="text-align:center;padding:0 12px;"><div style="width:48px;height:48px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:18px;font-weight:800;color:white;margin:0 auto 16px;">4</div><div style="font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;">Funded in 3–4 days</div><div style="font-size:12px;line-height:1.7;color:var(--muted);">Sign and the money arrives. Repayments start automatically as a small % of daily card sales.</div></div>
-    </div>
-  </div>
-</section>
-<section class="section section--alt">
-  <div class="container">
-    <div class="grid-2" style="gap:56px;align-items:start;">
-      <div>
-        <span class="eyebrow">Eligibility</span><h2 class="section-title">Do you qualify?</h2>
-        <p style="font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:24px;">Most UK businesses that take card payments qualify.</p>
-        <ul class="check-list">
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>UK-registered business, min. 3 months trading</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>Minimum £5,000/month via card payments</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>Your card processor doesn't have to be Payhorizon</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>No active insolvency proceedings</li>
-          <li><span class="check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></span>No existing MCA (unless refinancing to settle it)</li>
-        </ul>
-        <a href="#" onclick="showPage('contact')" class="btn btn-primary" style="margin-top:8px;">Check my eligibility</a>
-      </div>
-      <div>
-        <span class="eyebrow" style="display:block;margin-bottom:16px;">FAQ</span>
-        <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)"><h4>Is this a loan?</h4><div class="faq-q__icon">+</div></div><div class="faq-ans">No. A Merchant Cash Advance is not a loan — it's an advance against your future card sales. There's no fixed repayment date. You repay a percentage of what you take each day, so repayments flex with your revenue.</div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h4>Does it affect my credit score?</h4><div class="faq-q__icon">+</div></div><div class="faq-ans">The initial assessment uses a soft credit check only — no impact on your score. A hard check may be required on larger advances before final approval.</div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h4>What is a factor rate?</h4><div class="faq-q__icon">+</div></div><div class="faq-ans">A factor rate is the cost expressed as a multiplier. A factor rate of 1.20 on a £10,000 advance means you repay £12,000 total. Rates range from 1.03 to 1.30 depending on your profile.</div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><h4>What can I use the funding for?</h4><div class="faq-q__icon">+</div></div><div class="faq-ans">Anything business-related — stock, equipment, refurbishment, marketing, staff, cash flow. No restrictions on use.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="cta-band"><div class="cta-band__rule"></div><div class="container"><div class="cta-band__content"><h2 class="cta-band__title">90% approval rate. Funded in days.</h2><p class="cta-band__sub">Check eligibility in minutes. No commitment, no hard credit check to get started.</p><div class="cta-band__actions"><a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Check my eligibility now</a></div></div></div></div>
-</div><!-- /mca -->
-
-<!-- ══ ECOMMERCE ══════════════════════════════════════════ -->
-<div class="page" id="page-ecommerce">
-<div style="height:68px;background:var(--black);"></div>
-<section style="background:var(--black);padding:72px 0 88px;">
-  <div class="container"><div style="max-width:640px;">
-    <span class="eyebrow eyebrow--white">E-Commerce &amp; Online Payments</span>
-    <h1 style="font-family:var(--font-head);font-size:clamp(36px,5vw,58px);font-weight:800;color:white;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Sell online.<br>Get paid properly.</h1>
-    <p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.5);margin-bottom:36px;font-weight:300;">Hosted checkout, API integration, virtual terminal, and Pay by Link. Whatever your platform, we have a solution that fits.</p>
-    <a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Get an e-commerce quote</a>
-  </div></div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="grid-3">
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="card__title">Hosted Payment Page</div><p class="card__body">A secure, branded payment page we host for you. Minimal integration. PCI-SAQ A compliant, mobile-optimised, 3D Secure 2.0 built in.</p></div>
-      <div class="card card--inv"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="card__title">API Integration</div><p class="card__body">Full API access for custom checkouts, subscriptions, and complex flows. REST API with tokenisation, webhooks, and sandbox testing.</p></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="card__title">Virtual Terminal</div><p class="card__body">Take card payments by phone or post. MOTO, deposits, invoicing, B2B payments. Accessible from any browser. Keyed entry with full audit trail.</p></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="card__title">Pay by Link</div><p class="card__body">Generate a payment link in seconds. Send by email or SMS. Customer pays on any device. From 15p per transaction. Real-time notification when paid.</p></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="card__title">Open Banking</div><p class="card__body">Bank-to-bank payments with no card network fees. No chargebacks. Instant confirmation. Lower cost than card for high-value or recurring transactions.</p></div>
-      <div class="card"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="card__title">Fraud &amp; Risk Management</div><p class="card__body">3DS2, velocity rules, BIN checks, real-time transaction scoring. Stay PCI-compliant without building your own security stack.</p></div>
-    </div>
-  </div>
-</section>
-<div class="cta-band"><div class="cta-band__rule"></div><div class="container"><div class="cta-band__content"><h2 class="cta-band__title">Selling online and paying too much for it?</h2><p class="cta-band__sub">Tell us your setup and volumes. We'll show you what's possible.</p><div class="cta-band__actions"><a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Get an e-commerce quote</a></div></div></div></div>
-</div><!-- /ecommerce -->
-
-<!-- ══ ABOUT ══════════════════════════════════════════════ -->
-<div class="page" id="page-about">
-<div style="height:68px;background:var(--black);"></div>
-<section style="background:var(--black);padding:72px 0 88px;">
-  <div class="container"><div style="max-width:680px;">
-    <span class="eyebrow eyebrow--white">Our Story</span>
-    <h1 style="font-family:var(--font-head);font-size:clamp(36px,5vw,58px);font-weight:800;color:white;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">We built the company we wished existed when we were merchants.</h1>
-    <p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.5);font-weight:300;">Payhorizon was founded by people who had been on the other side of the table — and didn't like what they found there.</p>
-  </div></div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="about-split">
-      <div>
-        <h2 class="section-title">The problem with the payments market</h2>
-        <p style="font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:20px;">Most businesses sign up to a merchant services provider without fully understanding what they're agreeing to. The pricing is opaque. The contract is long. The support, once you're on board, often disappears.</p>
-        <p style="font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:20px;">We experienced this ourselves. We watched businesses overpay for years because nobody explained what IC++ pricing was, or that their sector qualified for better rates, or that a different acquirer would be a better fit.</p>
-        <p style="font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:20px;">We also saw a gap at the other end of the market. High-volume operators — transport networks, parking companies, councils — were being handled by the same tied resellers as everyone else. Their volumes deserved a specialist. They rarely got one.</p>
-        <p style="font-size:15px;line-height:1.85;color:var(--muted);">So we built Payhorizon: an independent broker with no allegiance to any single acquirer, no opaque pricing, and a genuine focus on getting the right result for each merchant.</p>
-      </div>
-      <div>
-        <div class="value-item"><div class="value-item__num">01</div><div><div class="value-item__title">Independence, always</div><p class="value-item__body">Not owned by a bank. Not tied to an acquirer. Our advice is driven by what's right for your business.</p></div></div>
-        <div class="value-item"><div class="value-item__num">02</div><div><div class="value-item__title">Transparency, always</div><p class="value-item__body">We show you what things cost and why. IC++ pricing means every line is visible. If we can't beat your rate, we'll tell you.</p></div></div>
-        <div class="value-item"><div class="value-item__num">03</div><div><div class="value-item__title">Straight talking</div><p class="value-item__body">No jargon. No empty promises. We say what we mean, explain what we don't know, and fix what goes wrong.</p></div></div>
-        <div class="value-item"><div class="value-item__num">04</div><div><div class="value-item__title">Built for the long term</div><p class="value-item__body">We're not here to sign you up and disappear. We're here to be your payments partner for years.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="stat-strip">
-  <div class="container">
-    <div class="stat-strip__grid">
-      <div class="stat-strip__item"><div class="stat-strip__num">16<span>+</span></div><div class="stat-strip__label">Acquirers on our panel</div></div>
-      <div class="stat-strip__item"><div class="stat-strip__num">£1<span>M</span></div><div class="stat-strip__label">Max MCA funding available</div></div>
-      <div class="stat-strip__item"><div class="stat-strip__num">3<span>–4</span></div><div class="stat-strip__label">Days from application to live</div></div>
-      <div class="stat-strip__item"><div class="stat-strip__num">UK<span>✓</span></div><div class="stat-strip__label">Based, regulated, independent</div></div>
-    </div>
-  </div>
-</div>
-<div class="cta-band"><div class="cta-band__rule"></div><div class="container"><div class="cta-band__content"><h2 class="cta-band__title">Ready to see what honest payments look like?</h2><p class="cta-band__sub">Get a free cost comparison — no commitment, no sales pressure.</p><div class="cta-band__actions"><a href="#" onclick="showPage('contact')" class="btn btn-white btn-lg">Get a free cost comparison</a></div></div></div></div>
-</div><!-- /about -->
-
-<!-- ══ CONTACT ════════════════════════════════════════════ -->
-<div class="page" id="page-contact">
-<div style="height:68px;background:var(--black);"></div>
-<section class="section" style="background:var(--off);">
-  <div class="container">
-    <div class="grid-2" style="gap:64px;align-items:start;">
-      <div>
-        <span class="eyebrow">Get in touch</span>
-        <h1 class="section-title">Let's find out what you should be paying</h1>
-        <p class="section-sub" style="margin-bottom:36px;">Tell us about your business and we'll come back with a proper cost comparison — not an estimate, but your actual rate based on your actual card mix.</p>
-        <div style="display:flex;flex-direction:column;gap:20px;">
-          <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:38px;height:38px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg></div><div><div style="font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px;">Free cost comparison</div><div style="font-size:12px;color:var(--muted);line-height:1.6;">We'll analyse your current statement and show you what you'd pay with us. No obligation.</div></div></div>
-          <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:38px;height:38px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><div style="font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px;">Response within 24 hours</div><div style="font-size:12px;color:var(--muted);line-height:1.6;">A real person reviews your enquiry and comes back with a proper answer — not an automated quote.</div></div></div>
-          <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:38px;height:38px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div style="font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px;">payhorizon.co.uk</div><div style="font-size:12px;color:var(--muted);line-height:1.6;">Your payments. Your terms. Our expertise.</div></div></div>
-        </div>
-      </div>
-      <div class="form-card">
-        <h3 style="font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--black);margin-bottom:24px;">Get a free cost comparison</h3>
-        <div class="form-grid">
-          <div class="form-group"><label>First name</label><input type="text" placeholder="Jane"></div>
-          <div class="form-group"><label>Last name</label><input type="text" placeholder="Smith"></div>
-          <div class="form-group"><label>Business name</label><input type="text" placeholder="Smith's Bakery Ltd"></div>
-          <div class="form-group"><label>Phone number</label><input type="tel" placeholder="07700 900000"></div>
-          <div class="form-group form-group--full"><label>Email address</label><input type="email" placeholder="jane@smithsbakery.co.uk"></div>
-          <div class="form-group form-group--full"><label>Monthly card turnover (approx.)</label><select><option>Under £10,000</option><option>£10,000 – £50,000</option><option selected>£50,000 – £250,000</option><option>£250,000 – £1M</option><option>Over £1M</option></select></div>
-          <div class="form-group form-group--full"><label>I'm interested in</label><select><option>Card payments / terminals</option><option>E-commerce / online payments</option><option>Business funding (MCA)</option><option>EPOS solution</option><option>Enterprise / high-volume</option><option>General enquiry</option></select></div>
-          <div class="form-group form-group--full"><label>Anything else?</label><textarea placeholder="e.g. currently with Worldpay on 1.75% blended, looking to switch..."></textarea></div>
-        </div>
-        <button class="btn btn-primary btn-lg" style="width:100%;margin-top:20px;justify-content:center;" onclick="handleSubmit(event)">Send my enquiry <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-        <div style="margin-top:12px;font-size:11px;color:var(--muted);text-align:center;line-height:1.6;">No commitment. A real person will review this and respond within 24 hours.</div>
-      </div>
-    </div>
-  </div>
-</section>
-</div><!-- /contact -->
-
-<!-- ══ FOOTER ═════════════════════════════════════════════ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__logo">
-          <div class="footer__logo-mark"><img src="data:image/jpeg;base64,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" alt="Payhorizon"></div>
-          <span class="footer__logo-text">Payhorizon</span>
-        </div>
-        <p class="footer__desc">Independent merchant services broker. We find the right payment solution for your business — without being tied to any single provider.</p>
-        <a href="https://payhorizon.co.uk" style="font-family:var(--font-head);font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;">payhorizon.co.uk</a>
-      </div>
-      <div>
-        <div class="footer__col-title">Services</div>
-        <div class="footer__links">
-          <a href="#" onclick="showPage('sme')" class="footer__link">Card Terminals</a>
-          <a href="#" onclick="showPage('sme')" class="footer__link">Smart Payment App</a>
-          <a href="#" onclick="showPage('ecommerce')" class="footer__link">E-Commerce</a>
-          <a href="#" onclick="showPage('sme')" class="footer__link">EPOS Solutions</a>
-          <a href="#" onclick="showPage('mca')" class="footer__link">Merchant Cash Advance</a>
-          <a href="#" onclick="showPage('ecommerce')" class="footer__link">Open Banking</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Sectors</div>
-        <div class="footer__links">
-          <a href="#" onclick="showPage('sme')" class="footer__link">Small Business</a>
-          <a href="#" onclick="showPage('enterprise')" class="footer__link">Transport &amp; Parking</a>
-          <a href="#" onclick="showPage('enterprise')" class="footer__link">Government &amp; Public Sector</a>
-          <a href="#" onclick="showPage('enterprise')" class="footer__link">Healthcare</a>
-          <a href="#" onclick="showPage('enterprise')" class="footer__link">Housing &amp; Utilities</a>
-          <a href="#" onclick="showPage('enterprise')" class="footer__link">Education</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Company</div>
-        <div class="footer__links">
-          <a href="#" onclick="showPage('about')" class="footer__link">About Us</a>
-          <a href="#" onclick="showPage('contact')" class="footer__link">Contact</a>
-          <a href="#" class="footer__link">Privacy Policy</a>
-          <a href="#" class="footer__link">Terms &amp; Conditions</a>
-          <a href="#" class="footer__link">Cookie Policy</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p class="footer__legal">Payhorizon Ltd is an independent merchant services broker registered in England and Wales. We work with a panel of FCA-regulated acquiring institutions to provide payment solutions to UK businesses. Merchant Cash Advance products are provided by third-party lenders and are subject to eligibility and credit assessment. This website does not constitute financial advice. payhorizon.co.uk</p>
-      <span class="footer__copy">© 2026 Payhorizon Ltd</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('nav--scrolled',window.scrollY>10);
-});
-document.getElementById('mainNav').classList.add('nav--scrolled');
-function toggleMobile(){
-  const l=document.querySelector('.nav__links');
-  const c=document.querySelector('.nav__cta');
-  if(!l)return;
-  const open=l.style.display==='flex';
-  if(open){l.style.display='';if(c)c.style.display='';}
-  else{
-    l.style.cssText='display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(10,10,10,0.98);padding:16px 20px;gap:4px;border-bottom:1px solid rgba(255,255,255,0.06);';
-    if(c){c.style.cssText='display:flex;position:absolute;top:calc(68px + '+l.children.length*40+'px + 20px);left:20px;right:20px;justify-content:center;';}
-  }
-}
-function updateMCA(){
-  const v=parseFloat(document.getElementById('mcaInput').value)||0;
-  const mn=Math.max(5000,v);const mx=v*2;const f=1.38;
-  const fmt=x=>'£'+Math.round(x).toLocaleString('en-GB');
-  document.getElementById('mcaRange').textContent=fmt(mn)+' – '+fmt(mx);
-  document.getElementById('mcaRepay').textContent=fmt(mn*f)+' – '+fmt(mx*f);
-}
-function toggleFaq(el){
-  const item=el.closest('.faq-item');
-  const wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!wasOpen)item.classList.add('open');
-}
-function handleSubmit(e){
-  const btn=e.target;
-  btn.innerHTML='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" width="14"><path d="M2 8l4 4 8-8"/></svg> Enquiry received — we'll be in touch within 24 hours';
-  btn.style.background='#059669';
-  btn.disabled=true;
-}
-</script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
